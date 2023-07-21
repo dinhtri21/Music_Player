@@ -25,13 +25,13 @@ const app = {
             name: 'Limo',
             singer: 'Thắng',
             path: './music/Limo.mp3',
-            image: './pic/truoc_khi_em_ton_tai.jpg'
+            image: './pic/limo.jpg'
         },
         {
             name: 'Mất thời gian',
             singer: 'Thắng',
             path: './music/Mat thoi gian.mp3',
-            image: './pic/limo.jpg'
+            image: './pic/mat_thoi_gian.jpg'
         },
         {
             name: 'Trước khi em tồn tại',
@@ -40,23 +40,18 @@ const app = {
             image: './pic/truoc_khi_em_ton_tai.jpg'
         },
         {
-            name: 'Trước khi em tồn tại',
-            singer: 'Thắng',
-            path: './music/Truoc Khi Em Ton Tai.mp3',
-            image: './pic/truoc_khi_em_ton_tai.jpg'
+            name: 'Badtrip',
+            singer: 'MCK Prod. Phongkhin',
+            path: './music/khong_thich.mp3',
+            image: './pic/badtrip.jpg'
         },
         {
-            name: 'Trước khi em tồn tại',
-            singer: 'Thắng',
-            path: './music/Truoc Khi Em Ton Tai.mp3',
-            image: './pic/truoc_khi_em_ton_tai.jpg'
+            name: 'Không thích',
+            singer: ' Low G',
+            path: './music/khong_thich.mp3',
+            image: './pic/khong_thich.jpg'
         },
-        {
-            name: 'Trước khi em tồn tại',
-            singer: 'Thắng',
-            path: './music/Truoc Khi Em Ton Tai.mp3',
-            image: './pic/truoc_khi_em_ton_tai.jpg'
-        },
+       
         {
             name: '2h',
             singer: 'MCK',
