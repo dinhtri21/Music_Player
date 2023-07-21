@@ -11,7 +11,7 @@ const prevBtn = $('.btn-prev');
 const nextBtn = $('.btn-next');
 const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
-
+const playList = $('.playlist');
 
 
 const app = {
@@ -20,7 +20,7 @@ const app = {
     isRandom: false,
     isRepeat: false,
     songs: [
-       
+
         {
             name: 'Limo',
             singer: 'Thắng',
@@ -32,6 +32,24 @@ const app = {
             singer: 'Thắng',
             path: './music/Mat thoi gian.mp3',
             image: './pic/limo.jpg'
+        },
+        {
+            name: 'Trước khi em tồn tại',
+            singer: 'Thắng',
+            path: './music/Truoc Khi Em Ton Tai.mp3',
+            image: './pic/truoc_khi_em_ton_tai.jpg'
+        },
+        {
+            name: 'Trước khi em tồn tại',
+            singer: 'Thắng',
+            path: './music/Truoc Khi Em Ton Tai.mp3',
+            image: './pic/truoc_khi_em_ton_tai.jpg'
+        },
+        {
+            name: 'Trước khi em tồn tại',
+            singer: 'Thắng',
+            path: './music/Truoc Khi Em Ton Tai.mp3',
+            image: './pic/truoc_khi_em_ton_tai.jpg'
         },
         {
             name: 'Trước khi em tồn tại',
@@ -54,10 +72,11 @@ const app = {
             }
         })
     },
+    
     render: function () {
-        const htmls = this.songs.map((song,index) => {
+        const htmls = this.songs.map((song, index) => {
             return `
-            <div class="song ${index === this.currentIndex ? 'active' : ''}">
+            <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index=${index}>
             <div class="thumb" style="background-image: url('${song.image}')">
             </div>
             <div class="body">
@@ -70,7 +89,7 @@ const app = {
         </div>
             `
         })
-        $('.playlist').innerHTML = htmls.join('');
+        playList.innerHTML = htmls.join('');
     },
 
     handlEvents: function () {
@@ -129,7 +148,7 @@ const app = {
             audio.currentTime = seekTime
         }
 
-        //Khi net song
+        //Khi next song
         nextBtn.onclick = function () {
             if (_this.isRandom) {
                 _this.playRandomSong();
@@ -138,6 +157,7 @@ const app = {
             }
             audio.play();
             _this.render();
+            _this.scrollToActiveSong();
         }
         //Khi quay trở lại song 
         prevBtn.onclick = function () {
@@ -153,18 +173,35 @@ const app = {
             _this.isRandom = !_this.isRandom
             randomBtn.classList.toggle('active', _this.isRandom);
         }
-        
+
         //Xử lí repeat song
-        repeatBtn.onclick = function(){
+        repeatBtn.onclick = function () {
             _this.isRepeat = !_this.isRepeat
             repeatBtn.classList.toggle('active', _this.repeatBtn);
         }
         //XỬ lí next song khi audio ended
         audio.onended = function () {
-            if(_this.isRepeat){
+            if (_this.isRepeat) {
                 audio.play();
             } else {
                 nextBtn.click();
+            }
+        }
+        //Lắng nghe hành vi click vào playlist
+        playList.onclick = function (e) {
+            if (e.target.closest('.song:not(.active)') || e.target.closest('.option')) {
+                //Xử lí khi click vào song 
+                if (e.target.closest('.song:not(.active)')) {
+                    _this.currentIndex = Number(e.target.closest('.song:not(.active)').dataset.index);
+                    _this.loadCurrentSong();
+                    audio.play();
+                    _this.render();
+                }
+
+                //Xử lí khi click vào song option
+                // if(e.target.closest('.option')){
+
+                // }
             }
         }
     },
@@ -197,6 +234,14 @@ const app = {
         } while (newIndex == this.currentIndex);
         this.currentIndex = newIndex;
         this.loadCurrentSong();
+    },
+    scrollToActiveSong: function () {
+        setTimeout(() => {
+            $('.song.active').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            })
+        }, 300)
     },
     //start
     start: function () {
