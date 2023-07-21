@@ -1,8 +1,8 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const heading = $('header h2');
-const cdThumb = $('.cd-thumb');
 const audio = $('#audio');
+const cdThumb = $('.cd-thumb');
 const cd = $('.cd');
 const playBtn = $('.btn-toggle-play');
 const player = $('.player');
@@ -74,6 +74,19 @@ const app = {
     handlEvents: function () {
         const _this = this;
         const cdWidth = cd.offsetWidth;
+        //Xử lý cd quay/dừng
+
+        const cdThumbAnimate = cdThumb.animate([
+            {
+                transform: 'rotate(360deg)'
+            }],
+            {
+                duration: 10000, //10secon
+                iterations: Infinity,
+
+            }
+        )
+        cdThumbAnimate.pause();
         //Xử lý phóng ta thu nhỏ cd
         document.onscroll = function () {
             const scrol = window.scrollY;
@@ -93,9 +106,11 @@ const app = {
         audio.onplay = function () {
             _this.isPlaying = true;
             player.classList.add('playing')
+            cdThumbAnimate.play();
         }
         //Khi song tắt playing
         audio.onpause = function () {
+            cdThumbAnimate.pause();
             _this.isPlaying = false;
             player.classList.remove('playing')
         }
@@ -112,6 +127,7 @@ const app = {
             audio.currentTime = seekTime
         }
 
+
     },
 
     loadCurrentSong: function () {
@@ -119,6 +135,7 @@ const app = {
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
         audio.src = this.currentSong.path
     },
+
 
     //start
     start: function () {
