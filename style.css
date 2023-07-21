@@ -1,5 +1,6 @@
 :root {
-    --primary-color: #ec1f55;
+    /* --primary-color: #ec1f55; */
+    --primary-color: #5a6d7e;
     --text-color: #333;
 }
 
@@ -45,6 +46,7 @@ html {
     max-width: 480px;
     border-bottom: 1px solid #ebebeb;
     overflow: hidden;
+    z-index: 1;
 }
 
 /* HEADER */
@@ -132,7 +134,7 @@ header h2 {
 
 /* PLAYLIST */
 .playlist {
-    margin-top: 500px;
+    margin-top: 515px;
     padding: 12px;
 }
 
@@ -145,7 +147,9 @@ header h2 {
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
-
+.song:hover{
+    transform: scale(1.02);
+}
 .song.active {
     background-color: var(--primary-color);
 }
