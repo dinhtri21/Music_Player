@@ -42,12 +42,18 @@ const app = {
         {
             name: 'Badtrip',
             singer: 'MCK Prod. Phongkhin',
-            path: './music/khong_thich.mp3',
+            path: './music/badtrip.mp3',
             image: './pic/badtrip.jpg'
         },
         {
+            name: 'Mở mắt',
+            singer: 'Lil Wuyn ft. Đen',
+            path: './music/mo_mat.mp3',
+            image: './pic/mo_mat.jpg'
+        },
+        {
             name: 'Không thích',
-            singer: ' Low G',
+            singer: 'Low G',
             path: './music/khong_thich.mp3',
             image: './pic/khong_thich.jpg'
         },
