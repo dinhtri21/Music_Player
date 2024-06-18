@@ -56,12 +56,23 @@ const app = {
       path: "./music/khong_thich.mp3",
       image: "./pic/khong_thich.jpg",
     },
-
     {
-      name: "2h",
-      singer: "MCK",
-      path: "./music/2h.mp3",
-      image: "./pic/2h.jpg",
+      name: "Sài Gòn ơi",
+      singer: "Obito",
+      path: "./music/sai_gon_oi.m4a",
+      image: "./pic/sai_gon_oi.jpg",
+    },
+    {
+      name: "Chưa phải là yêu",
+      singer: "HURRYKNG (feat. REX)",
+      path: "./music/chua_phai_la_yeu.m4a",
+      image: "./pic/chua_phai_la_yeu.jpg",
+    },
+    {
+      name: "Exit sign",
+      singer: "HIEUTHUHAI (feat. marzuz)",
+      path: "./music/exit_sign.m4a",
+      image: "./pic/exit_sign.jpg",
     },
   ],
   //method
@@ -172,6 +183,8 @@ const app = {
         _this.prevSong();
       }
       audio.play();
+      _this.render();
+      _this.scrollToActiveSong();
     };
     //Random song
     randomBtn.onclick = function () {
@@ -207,11 +220,6 @@ const app = {
           audio.play();
           _this.render();
         }
-
-        //Xử lí khi click vào song option
-        // if(e.target.closest('.option')){
-
-        // }
       }
     };
   },
@@ -245,6 +253,7 @@ const app = {
     this.currentIndex = newIndex;
     this.loadCurrentSong();
   },
+  //Chuyển focus đến bài hát đang phát
   scrollToActiveSong: function () {
     setTimeout(() => {
       $(".song.active").scrollIntoView({
